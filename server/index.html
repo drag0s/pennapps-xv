@@ -1,10 +1,43 @@
 <html>
 <h1></h1>
 <script>
-  var ws = new WebSocket('ws://localhost:3000');
+  function getLastWord(str) {
+    var words = str.split(' ');
+    return words[words.length - 1];
+  }
+
+  function getLastSentence(str) {
+    var sentences = str.split('.');
+    return sentences[sentences.length - 1].trim();
+  }
+
+  function toB64(str) {
+    return btoa(str);
+  }
+
+  function speak(str) {
+    $.get('./speak?msg='+str, function(data) {
+      var audio = new Audio('./audio/'+toB64(str)+'.wav');
+      audio.play();
+    });
+  }
+
+  var ws = new WebSocket('ws://10.251.89.224:3000');
   ws.onmessage = function(event) {
+    var msg = event.data;
     var str = $('h1').text();
-    $('h1').html(str + event.data);
+    console.log('msg is ', msg);
+    if (msg == 'space') {
+      msg = ' ';
+      const lastWord = getLastWord(str);
+      console.log(lastWord);
+      speak(lastWord);
+    } else if (msg == '.') {
+      const lastSentence = getLastSentence(str);
+      console.log(lastSentence);
+      speak(lastSentence);
+    }
+    $('h1').html(str + msg);
   };
 </script>
 
