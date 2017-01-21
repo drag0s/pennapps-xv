@@ -27,12 +27,11 @@
     var msg = event.data;
     var str = $('h1').text();
     console.log('msg is ', msg);
-    if (msg == 'space') {
-      msg = ' ';
+    if (msg == ' ') {
       const lastWord = getLastWord(str);
       console.log(lastWord);
       speak(lastWord);
-    } else if (msg == '.') {
+    } else if (msg == '. ') {
       const lastSentence = getLastSentence(str);
       console.log(lastSentence);
       speak(lastSentence);

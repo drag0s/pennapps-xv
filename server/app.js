@@ -21,12 +21,14 @@ app.get('/', (req, res) => {
 app.get('/send', (req, res) => {
   connections.forEach(c => {
   try {
-    if (req.query.msg == '2space') {
-  c.send(' ');
-} else {
-  c.send(req.query.msg);
-}
-console.log("msg sended to front");
+    if (req.query.msg == 'space') {
+      c.send(' ');
+    } else if (req.query.msg == '.') {
+      c.send(req.query.msg + ' ');
+    } else {
+      c.send(req.query.msg);
+    }
+    console.log("msg sended to front");
 } catch(e) { console.log("failed sending msg"); }
 });
 res.status(200).send('sent ' + req.query.msg + ' to frontend');
