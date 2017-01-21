@@ -1,0 +1,18 @@
+{
+  "name": "pennapps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-ws": "^2.0.0",
+    "say": "^0.11.0",
+    "websocket": "^1.0.24"
+  }
+}

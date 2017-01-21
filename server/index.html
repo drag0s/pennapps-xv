@@ -1,0 +1,14 @@
+<html>
+<h1></h1>
+<script>
+  var ws = new WebSocket('ws://localhost:3000');
+  ws.onmessage = function(event) {
+    var str = $('h1').text();
+    $('h1').html(str + event.data);
+  };
+</script>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+</html>
